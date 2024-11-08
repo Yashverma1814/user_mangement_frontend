@@ -53,6 +53,11 @@ export default function UsersPage() {
               <th className="py-2 px-4 text-left">Name</th>
               <th className="py-2 px-4 text-left">Place</th>
               <th className="py-2 px-4 text-left">Expertise</th>
+              <th className="py-2 px-4 text-left">Department</th>
+              <th className="py-2 px-4 text-left">Nationality</th>
+              <th className="py-2 px-4 text-left">Blood Group</th>
+              <th className="py-2 px-4 text-left">Employed</th>
+              <th className="py-2 px-4 text-left">Married</th>
               <th className="py-2 px-4 text-left">Actions</th>
             </tr>
           </thead>
@@ -63,6 +68,11 @@ export default function UsersPage() {
                 <td className="py-2 px-4">{user.name}</td>
                 <td className="py-2 px-4">{user.place}</td>
                 <td className="py-2 px-4">{user.expertise}</td>
+                <td className="py-2 px-4">{user.department}</td>
+                <td className="py-2 px-4">{user.nationality}</td>
+                <td className="py-2 px-4">{user.bloodGrp}</td>
+                <td className="py-2 px-4">{user.employed?"Yes":"No"}</td>
+                <td className="py-2 px-4">{user.married?"Yes":"<No></No>"}</td>
                 <td className="py-2 px-4">
                   <Link href={`/users/${user._id}`}>
                     <button className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition-colors mr-2">
