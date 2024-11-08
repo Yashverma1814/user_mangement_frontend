@@ -156,7 +156,6 @@ export default function CreateUser() {
           </select>
         </div>
 
-        {/* Gender (Radio Buttons) */}
         <div className="flex space-x-4">
           <label>Gender:</label>
           <label className="flex items-center">
@@ -188,7 +187,6 @@ export default function CreateUser() {
           </label>
         </div>
 
-        {/* Nationality, Religion */}
         <div className="grid grid-cols-2 gap-4">
           <select
             name="nationality"
@@ -200,7 +198,6 @@ export default function CreateUser() {
             <option value="">Select Nationality</option>
             <option value="indian">Indian</option>
             <option value="american">American</option>
-            {/* Add more options as needed */}
           </select>
           <select
             name="religion"
@@ -230,11 +227,9 @@ export default function CreateUser() {
               <option value="hindi">Hindi</option>
               <option value="spanish">Spanish</option>
               <option value="french">French</option>
-              {/* Add more language options as needed */}
             </select>
           </div>
 
-          {/* Pincode Field */}
           <div className="grid grid-cols-1 gap-4">
             <input
               type="text"
@@ -248,7 +243,6 @@ export default function CreateUser() {
             />
           </div>
         </div>
-        {/* Aadhaar No (formatted), Blood Group */}
         <div className="grid grid-cols-2 gap-4">
           <div className="relative">
             <input
@@ -343,7 +337,6 @@ export default function CreateUser() {
           </div>
         </div>
 
-        {/* Father, Mother Name */}
         <div className="grid grid-cols-2 gap-4">
           <input
             type="text"
@@ -365,7 +358,6 @@ export default function CreateUser() {
           />
         </div>
 
-        {/* Employed, Married (Toggle Switches) */}
         <div className="flex space-x-6">
           <label className="flex items-center space-x-2">
             <span>Employed</span>
@@ -415,7 +407,6 @@ export default function CreateUser() {
             />
           </div>
 
-          {/* Date of Birth Field */}
           <div className="grid grid-cols-1 gap-4">
             <label className="block text-gray-700">Date of Birth</label>
             <DatePicker
@@ -429,7 +420,6 @@ export default function CreateUser() {
           </div>
         </div>
 
-        {/* Submit Button */}
         <button
           type="submit"
           className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"

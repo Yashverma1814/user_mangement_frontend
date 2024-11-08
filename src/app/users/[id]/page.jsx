@@ -93,7 +93,6 @@ export default function UpdateUserPage() {
         onSubmit={handleSubmit}
         className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md space-y-4"
       >
-        {/* Name, Place, and Expertise */}
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label htmlFor="">Name</label>
@@ -121,7 +120,6 @@ export default function UpdateUserPage() {
           </div>
         </div>
 
-        {/* Expertise, Phone */}
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label htmlFor="">Expertise</label>
@@ -149,7 +147,6 @@ export default function UpdateUserPage() {
           </div>
         </div>
 
-        {/* Aadhaar No (Read-only) */}
         <div className="grid grid-cols-2 gap-4">
         <div className="w-full">
           <label className="block font-semibold mb-1">Aadhaar No:</label>
@@ -161,7 +158,6 @@ export default function UpdateUserPage() {
           </small>
         </div>
 
-        {/* Blood Group (Read-only) */}
         <div className="w-full">
           <label className="block font-semibold mb-1">Blood Group:</label>
           <div className="w-full border-gray-300 rounded-md px-4 py-2 bg-gray-100 text-gray-700 cursor-not-allowed">
@@ -173,7 +169,6 @@ export default function UpdateUserPage() {
         </div>
         </div>
 
-        {/* Date of Birth */}
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-gray-700">Date of Birth:</label>
@@ -198,11 +193,9 @@ export default function UpdateUserPage() {
               <option value="">Select Nationality</option>
               <option value="indian">Indian</option>
               <option value="american">American</option>
-              {/* Add more options as needed */}
             </select>
           </div>
         </div>
-        {/* Email, Department */}
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label htmlFor="">Email</label>
@@ -232,7 +225,6 @@ export default function UpdateUserPage() {
           </div>
         </div>
 
-        {/* Religion, Language */}
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label htmlFor="">Religion</label>
@@ -264,12 +256,10 @@ export default function UpdateUserPage() {
               <option value="hindi">Hindi</option>
               <option value="spanish">Spanish</option>
               <option value="french">French</option>
-              {/* Add more language options as needed */}
             </select>
           </div>
         </div>
 
-        {/* Pincode, Gender */}
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label htmlFor="">Pincode</label>
@@ -291,6 +281,7 @@ export default function UpdateUserPage() {
                 name="gender"
                 value="male"
                 onChange={handleChange}
+                checked={user.gender=="male"}
               />{" "}
               Male
             </label>
@@ -300,6 +291,7 @@ export default function UpdateUserPage() {
                 name="gender"
                 value="female"
                 onChange={handleChange}
+                checked={user.gender=="female"}
               />{" "}
               Female
             </label>
@@ -310,15 +302,13 @@ export default function UpdateUserPage() {
                 name="gender"
                 value="others"
                 onChange={handleChange}
+                checked={user.gender=="other"}
               />{" "}
               Others
             </label>
           </div>
         </div>
 
-        {/* Nationality */}
-
-        {/* Father and Mother Name */}
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label htmlFor="">Father Name</label>
@@ -346,7 +336,6 @@ export default function UpdateUserPage() {
           </div>
         </div>
 
-        {/* Employment and Marital Status */}
         <div className="grid grid-cols-2 gap-4">
         <label className="flex items-center space-x-2">
             <span>Employed</span>
@@ -383,7 +372,6 @@ export default function UpdateUserPage() {
           </label>
         </div>
 
-        {/* Address */}
         <div className="w-full">
           <textarea
             name="address"
@@ -395,10 +383,6 @@ export default function UpdateUserPage() {
           />
         </div>
 
-        {/* Other fields like Address, Gender, Department, etc */}
-        {/* ... (include all other fields like nationality, email, etc., similar to the create form) ... */}
-
-        {/* Submit Button */}
         <button
           type="submit"
           className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
