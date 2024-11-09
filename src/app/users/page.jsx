@@ -20,7 +20,11 @@ export default function UsersPage() {
   const [department, setDepartment] = useState("");
   const [isEmployed, setIsEmployed] = useState("");
   const [isMarried, setIsMarried] = useState("");
-  const [lastname,setLastname] = useState("")
+  const [lastname, setLastname] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [userName,setUserName] = useState(false)
+  const [userNameFt,setUserNameFt] = useState("")
+  const [seVal,setseVal] = useState("")
 
   const fetchUsers = async () => {
     try {
@@ -55,12 +59,26 @@ export default function UsersPage() {
         return (
           (bloodGroup ? user.bloodGrp === bloodGroup : true) &&
           (expertise
-            ? user.expertise.toLowerCase().includes(expertise.toLowerCase())
+            ? user.expertise.toLowerCase().startsWith(expertise.toLowerCase())
             : true) &&
           (department ? user.department === department : true) &&
           (isEmployed !== "" ? user.employed === isEmployed : true) &&
-          (isMarried !== "" ? user.married === isMarried : true)&&
-          (lastname?user.name.trim().split(" ")[user.name.trim().split(" ").length-1].toLowerCase().includes(lastname.toLowerCase()):true)
+          (isMarried !== "" ? user.married === isMarried : true) &&
+          (lastname
+            ? user.name
+                .trim()
+                .split(" ")
+                [user.name.trim().split(" ").length - 1].toLowerCase()
+                .startsWith(lastname.toLowerCase())
+            : true) &&
+          (firstName
+            ? user.name
+                .trim()
+                .split(" ")[0]
+                .toLowerCase()
+                .startsWith(firstName.toLowerCase())
+            : true)&&
+          (userNameFt=="sw"?(user.name.toLowerCase().startsWith(seVal.toLowerCase())):userNameFt=="ew"?(user.name.toLowerCase().endsWith(seVal.toLowerCase())):true)
         );
       })
     : [];
@@ -70,7 +88,7 @@ export default function UsersPage() {
   const currentUsers = filteredData
     .reverse()
     .slice(startIndex, startIndex + usersPerPage);
-  console.log(isEmployed,isMarried)
+  console.log(isEmployed, isMarried);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
@@ -107,7 +125,6 @@ export default function UsersPage() {
             <option value="B-">B-</option>
             <option value="AB-">AB-</option>
             <option value="O-">O-</option>
-
           </select>
         </div>
         <div className="mb-4">
@@ -116,6 +133,45 @@ export default function UsersPage() {
             type="text"
             value={expertise}
             onChange={(e) => setExpertise(e.target.value)}
+            className="w-full p-2 border rounded"
+          />
+        </div>
+        <div className="mb-3">
+          <div className="mb-4 flex items-center">
+            <input
+              type="checkbox"
+              value={userName}
+              onChange={() => setUserName(!userName)}
+              className="p-2 border rounded mr-2"
+            />
+            <label className="text-sm font-medium">User Name</label>
+          </div>
+        </div>
+        {userName?
+        <div className="mb-4">
+          <select
+            value={userNameFt}
+            onChange={(e) => setUserNameFt(e.target.value)}
+            className="w-full p-2 border rounded"
+          >
+            <option value="">Select fiilter type</option>
+            <option value="sw">start with</option>
+            <option value="ew">end with</option>
+          </select>
+          <input
+            type="text"
+            value={seVal}
+            onChange={(e) => setseVal(e.target.value)}
+            className="w-full p-2 border rounded"
+          />
+        </div>:""
+        }
+        <div className="mb-4">
+          <label className="block text-sm font-medium">First name</label>
+          <input
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
             className="w-full p-2 border rounded"
           />
         </div>
@@ -187,6 +243,9 @@ export default function UsersPage() {
             setDepartment("");
             setIsEmployed("");
             setIsMarried("");
+            setFirstName("");
+            setLastname("");
+            setUserNameFt("")
           }}
           className="mt-4 w-full py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 transition-colors duration-200"
         >
