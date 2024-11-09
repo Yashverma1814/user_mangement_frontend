@@ -18,8 +18,9 @@ export default function UsersPage() {
   const [bloodGroup, setBloodGroup] = useState("");
   const [expertise, setExpertise] = useState("");
   const [department, setDepartment] = useState("");
-  const [isEmployed, setIsEmployed] = useState(null);
-  const [isMarried, setIsMarried] = useState(null);
+  const [isEmployed, setIsEmployed] = useState("");
+  const [isMarried, setIsMarried] = useState("");
+  const [lastname,setLastname] = useState("")
 
   const fetchUsers = async () => {
     try {
@@ -57,8 +58,9 @@ export default function UsersPage() {
             ? user.expertise.toLowerCase().includes(expertise.toLowerCase())
             : true) &&
           (department ? user.department === department : true) &&
-          (isEmployed !== null ? user.employed === isEmployed : true) &&
-          (isMarried !== null ? user.married === isMarried : true)
+          (isEmployed !== "" ? user.employed === isEmployed : true) &&
+          (isMarried !== "" ? user.married === isMarried : true)&&
+          (lastname?user.name.trim().split(" ")[user.name.trim().split(" ").length-1].toLowerCase().includes(lastname.toLowerCase()):true)
         );
       })
     : [];
@@ -68,6 +70,7 @@ export default function UsersPage() {
   const currentUsers = filteredData
     .reverse()
     .slice(startIndex, startIndex + usersPerPage);
+  console.log(isEmployed,isMarried)
 
   const handleNextPage = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
@@ -86,7 +89,6 @@ export default function UsersPage() {
 
   return (
     <div className="container mx-auto p-6 flex">
-      {/* Sidebar for Filters */}
       <aside className="w-1/4 p-4 bg-gray-100 rounded-lg shadow-lg">
         <h2 className="text-xl font-bold mb-4">Filter Users</h2>
         <div className="mb-4">
@@ -118,6 +120,15 @@ export default function UsersPage() {
           />
         </div>
         <div className="mb-4">
+          <label className="block text-sm font-medium">Last name</label>
+          <input
+            type="text"
+            value={lastname}
+            onChange={(e) => setLastname(e.target.value)}
+            className="w-full p-2 border rounded"
+          />
+        </div>
+        <div className="mb-4">
           <label className="block text-sm font-medium">Department</label>
           <select
             value={department}
@@ -139,7 +150,7 @@ export default function UsersPage() {
                   ? true
                   : e.target.value === "false"
                   ? false
-                  : null
+                  : ""
               )
             }
             className="w-full p-2 border rounded"
@@ -159,7 +170,7 @@ export default function UsersPage() {
                   ? true
                   : e.target.value === "false"
                   ? false
-                  : null
+                  : ""
               )
             }
             className="w-full p-2 border rounded"
@@ -174,8 +185,8 @@ export default function UsersPage() {
             setBloodGroup("");
             setExpertise("");
             setDepartment("");
-            setIsEmployed(null);
-            setIsMarried(null);
+            setIsEmployed("");
+            setIsMarried("");
           }}
           className="mt-4 w-full py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 transition-colors duration-200"
         >
@@ -183,7 +194,6 @@ export default function UsersPage() {
         </button>
       </aside>
 
-      {/* Users Table */}
       <div className="w-3/4 pl-6">
         <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">
           Users List
